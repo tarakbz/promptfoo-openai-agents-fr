@@ -2,9 +2,9 @@
 
 Formation pratique et gratuite, en français, pour **évaluer, tester et sécuriser des agents IA construits avec OpenAI Agents SDK (JavaScript / TypeScript) et Promptfoo**.
 
-**[Consulter la formation en ligne](https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz#no_universal_links)** · [Documentation officielle Promptfoo](https://www.promptfoo.dev/docs/providers/openai-agents/) · [OpenAI Agents SDK](https://github.com/openai/openai-agents-js)
+**[Consulter la formation en ligne](https://tarakbz.github.io/promptfoo-openai-agents-fr/)** · [Documentation officielle Promptfoo](https://www.promptfoo.dev/docs/providers/openai-agents/) · [OpenAI Agents SDK](https://github.com/openai/openai-agents-js)
 
-> **Publication :** la formation est consultable sur [Claude Artifacts](https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz#no_universal_links). Le dépôt GitHub conserve la source HTML, l'historique et les contributions.
+> **Publication officielle du cours :** [GitHub Pages](https://tarakbz.github.io/promptfoo-openai-agents-fr/), directement depuis la branche `main` du dépôt.
 
 ## Au programme
 
@@ -24,7 +24,7 @@ Les noms des API, paramètres et identifiants de configuration restent inchangé
 
 ## Lire la formation
 
-- **En ligne :** [ouvrir le cours](https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz#no_universal_links).
+- **En ligne :** [ouvrir le cours](https://tarakbz.github.io/promptfoo-openai-agents-fr/).
 - **Hors ligne :** télécharger [`index.html`](./index.html) et l'ouvrir dans un navigateur.
 - **Mobile :** le sommaire et la navigation fonctionnent sans JavaScript. La recherche, les boutons « Copier » et la sauvegarde de progression nécessitent JavaScript.
 
@@ -56,32 +56,41 @@ Si le fournisseur natif refuse votre version du SDK, **conservez la version néc
 .
 ├── index.html                  # Source HTML autonome du cours
 ├── README.md                   # Présentation et instructions
-├── .nojekyll                   # Utile si GitHub Pages est activé ultérieurement
+├── sitemap.xml                 # Sitemap SEO de la formation
+├── .nojekyll                   # Désactivation de Jekyll pour GitHub Pages
 ├── CONTRIBUTING.md             # Contributions et corrections
 ├── LICENSE                     # Licence MIT du contenu original
 └── .github/workflows/check.yml # Validation élémentaire lors des contributions
 ```
 
-## Publication du cours
+## Publication du cours sur GitHub Pages
 
-La version publique actuelle de la formation est hébergée sur **Claude Artifacts** :
+La formation est accessible publiquement et gratuitement à cette adresse :
 
-**[Ouvrir la formation française Promptfoo × OpenAI Agents](https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz#no_universal_links)**
+**[Consulter la formation Promptfoo × OpenAI Agents en français](https://tarakbz.github.io/promptfoo-openai-agents-fr/)**
 
-Le fichier [`index.html`](./index.html) présent dans ce dépôt permet de conserver une copie portable du cours et de contribuer aux corrections. Le cours fonctionne également comme page HTML statique si vous choisissez plus tard un hébergement indépendant (par exemple GitHub Pages ou un domaine personnel).
+GitHub Pages publie le fichier `index.html` depuis la branche `main`, dossier `/(root)`. Le site est une page HTML statique autonome, sans build ni framework nécessaire.
+
+Pour retrouver ou modifier les réglages, ouvrir [Settings → Pages](https://github.com/tarakbz/promptfoo-openai-agents-fr/settings/pages). Les modifications du fichier `index.html` sur `main` sont automatiquement prises en compte après déploiement.
 
 ## Référencement et découverte
 
-Le fichier source `index.html` inclut un titre explicite, une description en français, une URL canonique correspondant à **l'Artifact public** (sans fragment `#no_universal_links`), des métadonnées Open Graph et des données structurées Schema.org de type `Course`.
+Le site utilise l'adresse canonique **https://tarakbz.github.io/promptfoo-openai-agents-fr/** dans le HTML et les métadonnées :
 
-**Limite importante :** la capacité des moteurs de recherche à explorer et indexer une page `claude.ai/artifact/...` dépend de Claude.ai. Ce dépôt ne contrôle pas ses en-têtes HTTP, son fichier `robots.txt`, ses directives d'indexation ni son sitemap. **Une URL publiée ne garantit pas son indexation.** Un sitemap servi sur GitHub ne peut pas, à lui seul, faire indexer une URL appartenant au domaine `claude.ai`.
+- `<title>` et `meta description` rédigés en français pour présenter la formation ;
+- balises `canonical`, `og:title`, `og:description` et `og:url` pour l'identification et le partage ;
+- données structurées [Schema.org `Course`](https://schema.org/Course) pour décrire la ressource pédagogique ;
+- [`sitemap.xml`](./sitemap.xml) disponible à **https://tarakbz.github.io/promptfoo-openai-agents-fr/sitemap.xml** ;
+- structure HTML sémantique et sommaire de navigation accessible sur mobile.
 
-Pour faciliter la découverte :
+Pour améliorer la découverte :
 
-1. Ajoutez l'[URL publique de la formation](https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz#no_universal_links) dans le champ **Website** de la rubrique **About** du dépôt GitHub.
-2. Complétez la description du dépôt et les *topics* : `promptfoo`, `openai-agents`, `agents-sdk`, `typescript`, `ai-evaluation`, `llm-testing`, `french`, `formation`.
-3. Partagez le dépôt et la formation dans des ressources spécialisées en IA et développement francophone.
-4. Si l'indexation autonome et la propriété du sitemap deviennent prioritaires, déployez également le HTML sur un hébergement que vous contrôlez et utilisez alors son URL canonique et son sitemap.
+1. Indiquer **https://tarakbz.github.io/promptfoo-openai-agents-fr/** dans le champ **Website** de la section **About** du dépôt.
+2. Donner au dépôt une description précise : « Formation Promptfoo et OpenAI Agents SDK en français : évaluation LLM, tests TypeScript, outils, tracing et red teaming ».
+3. Ajouter les *topics* GitHub : `promptfoo`, `openai-agents`, `agents-sdk`, `typescript`, `ai-evaluation`, `llm-testing`, `french`, `formation`.
+4. Vérifier l'accès public au cours et au sitemap ; utiliser [Google Search Console](https://search.google.com/search-console/about) pour suivre la présence dans l'index et soumettre le sitemap si la propriété est validée.
+
+**L'indexation par les moteurs de recherche ne peut pas être garantie** : le référencement dépend aussi de leurs règles d'exploration et de la qualité des liens pointant vers le site.
 
 ## Contribution
 
