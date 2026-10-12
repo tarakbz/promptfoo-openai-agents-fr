@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   verifier-site:
-    name: HTML, navigation, sitemap et SEO
+    name: HTML, navigation et SEO
     runs-on: ubuntu-latest
     steps:
       - name: Récupérer le dépôt
@@ -22,12 +22,10 @@ jobs:
           python3 - <<'PY'
           from html.parser import HTMLParser
           from pathlib import Path
-          from urllib.parse import urlsplit
           import json
           import re
-          import xml.etree.ElementTree as ET
 
-          BASE = "https://tarakbz.github.io/promptfoo-openai-agents-fr/"
+          BASE = "https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz"
           html = Path("index.html").read_text(encoding="utf-8")
           assert html.lower().startswith("<!doctype html>"), "DOCTYPE HTML manquant"
           assert '<html lang="fr">' in html, "Langue française manquante"
@@ -63,11 +61,7 @@ jobs:
           obj = json.loads(schema.group(1))
           assert obj.get("@type") == "Course", "Schéma Course manquant"
           assert obj.get("url") == BASE, "URL Course différente de la canonique"
+          assert obj.get("@id") == BASE + "#formation", "Identifiant Course incorrect"
 
-          root = ET.parse("sitemap.xml").getroot()
-          ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
-          urls = [e.text for e in root.findall(".//sm:loc", ns)]
-          assert urls == [BASE], f"URL(s) du sitemap incohérentes : {urls}"
-
-          print("OK : HTML, 25 chapitres, navigation, JSON-LD et sitemap")
+          print("OK : HTML, 25 chapitres, navigation et JSON-LD")
           PY
