@@ -71,7 +71,7 @@ jobs:
 
           for path in ("index.html", "README.md", "sitemap.xml"):
               document = Path(path).read_text(encoding="utf-8").lower()
-              assert "claude" not in document, f"Ancienne référence d'hébergement dans {path}"
+              assert BASE.lower() in document, f"URL GitHub Pages absente de {path}"
 
           print("OK : HTML, navigation, URL canonique, JSON-LD, README et sitemap")
           PY
