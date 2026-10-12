@@ -1,0 +1,73 @@
+name: Vérifier la documentation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verifier-site:
+    name: HTML, navigation, sitemap et SEO
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+      - name: Valider les fichiers du site statique
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urlsplit
+          import json
+          import re
+          import xml.etree.ElementTree as ET
+
+          BASE = "https://tarakbz.github.io/promptfoo-openai-agents-fr/"
+          html = Path("index.html").read_text(encoding="utf-8")
+          assert html.lower().startswith("<!doctype html>"), "DOCTYPE HTML manquant"
+          assert '<html lang="fr">' in html, "Langue française manquante"
+          assert 'rel="canonical" href="' + BASE + '"' in html, "URL canonique manquante"
+          assert 'application/ld+json' in html, "Données structurées manquantes"
+          assert 'gpt-6-luna' not in html, "Un nom de modèle obsolète est encore présent"
+          assert html.count('class="lesson"') == 25, "Nombre de chapitres inattendu"
+          assert Path(".nojekyll").exists(), "Fichier .nojekyll absent"
+
+          class Links(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.ids = set()
+                  self.targets = set()
+                  self.h2_count = 0
+              def handle_starttag(self, tag, attrs):
+                  a = dict(attrs)
+                  if a.get("id"):
+                      self.ids.add(a["id"])
+                  if tag == "a" and (a.get("href") or "").startswith("#"):
+                      self.targets.add(a["href"][1:])
+                  if tag == "h2":
+                      self.h2_count += 1
+
+          doc = Links()
+          doc.feed(html)
+          assert doc.h2_count == 25, "Titres H2 des chapitres incomplets"
+          broken = doc.targets - doc.ids - {""}
+          assert not broken, f"Liens internes brisés : {sorted(broken)}"
+
+          schema = re.search(r'<script type="application/ld\\+json">(.*?)</script>', html, re.S)
+          assert schema, "JSON-LD introuvable"
+          obj = json.loads(schema.group(1))
+          assert obj.get("@type") == "Course", "Schéma Course manquant"
+          assert obj.get("url") == BASE, "URL Course différente de la canonique"
+
+          root = ET.parse("sitemap.xml").getroot()
+          ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          urls = [e.text for e in root.findall(".//sm:loc", ns)]
+          assert urls == [BASE], f"URL(s) du sitemap incohérentes : {urls}"
+
+          print("OK : HTML, 25 chapitres, navigation, JSON-LD et sitemap")
+          PY
