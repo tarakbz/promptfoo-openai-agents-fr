@@ -2,9 +2,9 @@
 
 Formation pratique et gratuite, en français, pour **évaluer, tester et sécuriser des agents IA construits avec OpenAI Agents SDK (JavaScript / TypeScript) et Promptfoo**.
 
-**[Consulter la formation en ligne](https://tarakbz.github.io/promptfoo-openai-agents-fr/)** · [Documentation officielle Promptfoo](https://www.promptfoo.dev/docs/providers/openai-agents/) · [OpenAI Agents SDK](https://github.com/openai/openai-agents-js)
+**[Consulter la formation en ligne](https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz#no_universal_links)** · [Documentation officielle Promptfoo](https://www.promptfoo.dev/docs/providers/openai-agents/) · [OpenAI Agents SDK](https://github.com/openai/openai-agents-js)
 
-> **Publication :** l'adresse GitHub Pages ci-dessus fonctionne après activation de GitHub Pages dans les paramètres du dépôt (instructions plus bas).
+> **Publication :** la formation est consultable sur [Claude Artifacts](https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz#no_universal_links). Le dépôt GitHub conserve la source HTML, l'historique et les contributions.
 
 ## Au programme
 
@@ -24,7 +24,7 @@ Les noms des API, paramètres et identifiants de configuration restent inchangé
 
 ## Lire la formation
 
-- **En ligne :** [ouvrir le cours](https://tarakbz.github.io/promptfoo-openai-agents-fr/).
+- **En ligne :** [ouvrir le cours](https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz#no_universal_links).
 - **Hors ligne :** télécharger [`index.html`](./index.html) et l'ouvrir dans un navigateur.
 - **Mobile :** le sommaire et la navigation fonctionnent sans JavaScript. La recherche, les boutons « Copier » et la sauvegarde de progression nécessitent JavaScript.
 
@@ -54,40 +54,34 @@ Si le fournisseur natif refuse votre version du SDK, **conservez la version néc
 
 ```text
 .
-├── index.html                  # Cours complet et page d'accueil GitHub Pages
+├── index.html                  # Source HTML autonome du cours
 ├── README.md                   # Présentation et instructions
-├── sitemap.xml                 # Découverte de l'URL canonique du cours
-├── .nojekyll                   # Désactive la transformation Jekyll
+├── .nojekyll                   # Utile si GitHub Pages est activé ultérieurement
 ├── CONTRIBUTING.md             # Contributions et corrections
 ├── LICENSE                     # Licence MIT du contenu original
 └── .github/workflows/check.yml # Validation élémentaire lors des contributions
 ```
 
-## Hébergement gratuit avec GitHub Pages
+## Publication du cours
 
-Ce dépôt est conçu pour une **publication depuis la branche `main`**, sans étape de compilation :
+La version publique actuelle de la formation est hébergée sur **Claude Artifacts** :
 
-1. Ouvrez **[Settings → Pages](https://github.com/tarakbz/promptfoo-openai-agents-fr/settings/pages)**.
-2. Sous **Build and deployment**, choisissez **Deploy from a branch**.
-3. Sélectionnez **`main`** et le dossier **`/(root)`**, puis **Save**.
-4. Accédez à **https://tarakbz.github.io/promptfoo-openai-agents-fr/** une fois le déploiement terminé.
+**[Ouvrir la formation française Promptfoo × OpenAI Agents](https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz#no_universal_links)**
 
-Les mises à jour de `index.html` sur la branche `main` déclenchent ensuite le mécanisme habituel de publication GitHub Pages. En cas de problème, consultez l'onglet **Actions** du dépôt.
-
-Référence : [guide officiel de configuration GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+Le fichier [`index.html`](./index.html) présent dans ce dépôt permet de conserver une copie portable du cours et de contribuer aux corrections. Le cours fonctionne également comme page HTML statique si vous choisissez plus tard un hébergement indépendant (par exemple GitHub Pages ou un domaine personnel).
 
 ## Référencement et découverte
 
-La page contient un **titre explicite**, une **meta description en français**, une URL **canonique**, les balises de partage Open Graph/Twitter et des **données structurées Schema.org** pour décrire le support pédagogique.
+Le fichier source `index.html` inclut un titre explicite, une description en français, une URL canonique correspondant à **l'Artifact public** (sans fragment `#no_universal_links`), des métadonnées Open Graph et des données structurées Schema.org de type `Course`.
 
-Le fichier [`sitemap.xml`](./sitemap.xml) déclare l'URL canonique. Pour faciliter la découverte par les moteurs :
+**Limite importante :** la capacité des moteurs de recherche à explorer et indexer une page `claude.ai/artifact/...` dépend de Claude.ai. Ce dépôt ne contrôle pas ses en-têtes HTTP, son fichier `robots.txt`, ses directives d'indexation ni son sitemap. **Une URL publiée ne garantit pas son indexation.** Un sitemap servi sur GitHub ne peut pas, à lui seul, faire indexer une URL appartenant au domaine `claude.ai`.
 
-1. Activez GitHub Pages et vérifiez que le cours répond en HTTP 200.
-2. Ajoutez l'URL du site dans [Google Search Console](https://search.google.com/search-console/about) via la méthode de vérification proposée.
-3. Soumettez **https://tarakbz.github.io/promptfoo-openai-agents-fr/sitemap.xml** si la propriété sélectionnée autorise ce chemin.
-4. Ajoutez dans **About** du dépôt la description et l'adresse du site, puis les *topics* : `promptfoo`, `openai-agents`, `agents-sdk`, `typescript`, `ai-evaluation`, `llm-testing`, `french`, `formation`.
+Pour faciliter la découverte :
 
-**Note :** un sitemap aide à la découverte, sans garantir l'indexation ou une position particulière dans les résultats.
+1. Ajoutez l'[URL publique de la formation](https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz#no_universal_links) dans le champ **Website** de la rubrique **About** du dépôt GitHub.
+2. Complétez la description du dépôt et les *topics* : `promptfoo`, `openai-agents`, `agents-sdk`, `typescript`, `ai-evaluation`, `llm-testing`, `french`, `formation`.
+3. Partagez le dépôt et la formation dans des ressources spécialisées en IA et développement francophone.
+4. Si l'indexation autonome et la propriété du sitemap deviennent prioritaires, déployez également le HTML sur un hébergement que vous contrôlez et utilisez alors son URL canonique et son sitemap.
 
 ## Contribution
 
