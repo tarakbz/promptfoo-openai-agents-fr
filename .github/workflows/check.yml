@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   verifier-site:
-    name: HTML, navigation et SEO
+    name: HTML, navigation, liens et SEO
     runs-on: ubuntu-latest
     steps:
       - name: Récupérer le dépôt
@@ -24,8 +24,9 @@ jobs:
           from pathlib import Path
           import json
           import re
+          import xml.etree.ElementTree as ET
 
-          BASE = "https://claude.ai/artifact/6kBjDnxFYcvvcaty1mnZHz"
+          BASE = "https://tarakbz.github.io/promptfoo-openai-agents-fr/"
           html = Path("index.html").read_text(encoding="utf-8")
           assert html.lower().startswith("<!doctype html>"), "DOCTYPE HTML manquant"
           assert '<html lang="fr">' in html, "Langue française manquante"
@@ -63,5 +64,14 @@ jobs:
           assert obj.get("url") == BASE, "URL Course différente de la canonique"
           assert obj.get("@id") == BASE + "#formation", "Identifiant Course incorrect"
 
-          print("OK : HTML, 25 chapitres, navigation et JSON-LD")
+          root = ET.parse("sitemap.xml").getroot()
+          namespace = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          urls = [n.text for n in root.findall(".//s:loc", namespace)]
+          assert urls == [BASE], f"URL sitemap incorrecte : {urls}"
+
+          for path in ("index.html", "README.md", "sitemap.xml"):
+              document = Path(path).read_text(encoding="utf-8").lower()
+              assert "claude" not in document, f"Ancienne référence d'hébergement dans {path}"
+
+          print("OK : HTML, navigation, URL canonique, JSON-LD, README et sitemap")
           PY
